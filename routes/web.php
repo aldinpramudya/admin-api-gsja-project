@@ -6,7 +6,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->check()) {
+        $user = auth()->user();
+
+        if ($user->isAdminLevel()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isBendahara()) {
+            return redirect()->route('bendahara.dashboard');
+        } elseif ($user->isPendeta()) {
+            return redirect()->route('pendeta.dashboard');
+        }
+
+        return redirect()->route('admin.dashboard');
+    }
+
+    return redirect()->route('login');
 });
 
 require __DIR__ . '/auth.php';
