@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -44,5 +45,49 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relationship
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    // Role Check
+    public function hasRole($roleName){
+        return $this->role && $this->role->name === $roleName;
+    }
+
+    public function hasAnyRole($roles){
+        if(is_array($roles)){
+            foreach ($roles as $role){
+                if($this->hasRole($role)){
+                    return true;
+                }
+            }
+        } else {
+            return $this->hasRole($roles);
+        }
+        return false;
+    }
+
+    public function isSuperAdmin(){
+        return $this->hasRole(Role::SUPERADMIN);
+    }
+
+    public function isAdmin(){
+        return $this->hasRole(Role::ADMIN);
+    }
+
+    public function isBendahara(){
+        return $this->hasRole(Role::BENDAHARA);
+    }
+
+    public function isPendeta(){
+        return $this->hasRole(Role::PENDETA);
+    }
+
+    // Get Role Display Name
+    public function getRoleNameAttribute(){
+        return $this->role ? $this->role->display_name : 'No Role';
     }
 }
