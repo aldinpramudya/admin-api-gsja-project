@@ -31,7 +31,7 @@
                 <!-- Mobile Logo (shown only on small screens) -->
                 <div class="lg:hidden text-center mb-8">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-20 h-20 mx-auto mb-4">
-                    <h2 class="text-2xl font-bold text-[#E5322D]">{{ config('app.name') }}</h2>
+                    <h2 class="text-2xl font-bold text-[#E5322D]">Login Admin GSJA BPD 1 Jatim</h2>
                 </div>
 
                 <!-- Login Card -->
