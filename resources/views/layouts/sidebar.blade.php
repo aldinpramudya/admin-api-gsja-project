@@ -18,7 +18,7 @@
             </div>
             <div class="space-y-2">
                 <p class="text-xs text-white font-semibold uppercase">Manajemen</p>
-                <x-sidebar-link :href="route('admin.dashboard')" label="Pendeta" icon="file-user" />
+                <x-sidebar-link :href="route('admin.pendeta.index')" label="Pendeta" icon="file-user" />
                 <x-sidebar-link :href="route('admin.user.index')" label="Akun" icon="user-round-pen" />
             </div>
         </div>

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    {{-- Logo --}}
+    {{-- Logo Icon --}}
     <link rel="icon" href="{{ asset('images/logo.png') }}">
 
     <!-- Scripts -->
@@ -21,6 +21,7 @@
     {{-- Wsywig --}}
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    {{-- Wsywig End --}}
 </head>
 
 <body class="font-sans antialiased">
@@ -47,11 +48,12 @@
     </div>
 
 
-    {{-- Lucide Create --}}
+    {{-- Lucide Init --}}
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
     </script>
+    {{-- Lucide Init End --}}
 
 
 </body>

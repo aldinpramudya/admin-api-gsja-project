@@ -41,14 +41,18 @@ class ArticleController extends Controller
             'article_content' => 'required|string',
             'is_visible' => 'required|boolean',
             'tags' => 'array',
-            'article_image' => 'nullable|image|max:2048'
+            'article_image' => 'nullable|image|max:2048',
         ]);
 
-        $imagePath = null;
+        // Default image berada di public/images/default-article.jpg
+        $defaultImage = 'images/default-image-article.jpg';
+
+        // Upload jika ada gambar
         if ($request->hasFile('article_image')) {
             $imagePath = $request->file('article_image')->store('articles', 'public');
+        } else {
+            $imagePath = $defaultImage;
         }
-
 
         $article = Article::create([
             'article_title' => $request->article_title,
@@ -64,7 +68,6 @@ class ArticleController extends Controller
         return redirect()->route('admin.article.index')->with('success', "Artikel berhasil dibuat");
     }
 
-    // Update Artikel
     public function update(Request $request, Article $article)
     {
         $request->validate([
@@ -76,10 +79,15 @@ class ArticleController extends Controller
             'article_image' => 'nullable|image|max:2048'
         ]);
 
-        // Update image
         $imagePath = $article->article_image;
+
         if ($request->hasFile('article_image')) {
-            if ($imagePath) Storage::disk('public')->delete($imagePath);
+
+            // Hapus gambar lama kalau berasal dari storage
+            if ($article->article_image && str_starts_with($article->article_image, 'articles/')) {
+                Storage::disk('public')->delete($article->article_image);
+            }
+
             $imagePath = $request->file('article_image')->store('articles', 'public');
         }
 
@@ -89,7 +97,7 @@ class ArticleController extends Controller
             'article_excerpt' => $request->article_excerpt,
             'article_content' => $request->article_content,
             'is_visible' => $request->is_visible,
-            'article_image' => $request->article_image ?? $article->article_image
+            'article_image' => $imagePath
         ]);
 
         $article->tags()->sync($request->tags);
@@ -98,7 +106,8 @@ class ArticleController extends Controller
     }
 
     // Delete Artikel
-    public function destroy(Article $article){
+    public function destroy(Article $article)
+    {
         if ($article->article_image) {
             Storage::disk('public')->delete($article->article_image);
         }
@@ -108,5 +117,4 @@ class ArticleController extends Controller
 
         return redirect()->route('admin.article.index')->with('success', "Artikel Berhasil Dihapus");
     }
-
 }
