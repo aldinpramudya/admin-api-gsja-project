@@ -1,7 +1,13 @@
-@props(['href', 'label'])
+@props(['href', 'label', 'icon' => null])
 
 <a href="{{ $href }}"
-    class="block px-4 py-2.5 rounded-lg text-gray-700 font-medium
-           hover:bg-[var(--main-color)] hover:text-white transition-all duration-200">
-    {{ $label }}
+    class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white font-medium
+           hover:bg-black transition-all duration-200">
+
+    {{-- Lucide Icons --}}
+    @if ($icon)
+        <i data-lucide={{ $icon }}></i>
+    @endif
+
+    <span>{{ $label }}</span>
 </a>
