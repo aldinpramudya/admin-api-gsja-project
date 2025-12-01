@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,6 +48,23 @@ Route::middleware(['auth'])->group(function () {
 // Route for Admin and Superadmin
 Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Article Routes
+    Route::get('/manajemen-artikel', [ArticleController::class, 'index'])->name('article.index');
+    Route::get('/artikel-baru', [ArticleController::class, 'create'])->name('article.create');
+    Route::post('/', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/artikel/{article}', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::put('/{article}', [ArticleController::class, 'update'])->name('article.update');
+    Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
+    // Article Routes End
+
+    // Tag Routes
+    Route::get('/manajemen-tag-artikel', [TagController::class, 'index'])->name('tag.index');
+    Route::get('/manajemen-tag-artikel/tag-baru', [TagController::class, 'create'])->name('tag.create');
+    Route::post('/', [TagController::class, 'store'])->name('tag.store');
+    Route::get('/manajemen-tag-artikel/{tag}', [TagController::class, 'edit'])->name('tag.edit');
+    Route::put('/manajemen-tag-artikel/{tag}', [TagController::class, 'update'])->name('tag.update');
+    Route::delete('/manajemen-tag-artikel/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+    // Tag Routes End
 });
 
 // User Management - Only For Superadmin
@@ -65,6 +83,7 @@ Route::middleware(['auth', 'role:bendahara'])->prefix('bendahara')->name('bendah
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
+// Route Pendeta Only
 Route::middleware(['auth', 'role:pendeta'])->prefix('pendeta')->name('pendeta.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

@@ -10,7 +10,8 @@
             <x-sidebar-link :href="route('admin.dashboard')" label="Dashboard" icon="layout-panel-left" />
             <div class="space-y-2">
                 <p class="text-xs text-white font-semibold uppercase">Konten</p>
-                <x-sidebar-link :href="route('admin.dashboard')" label="Artikel" icon="newspaper" />
+                <x-sidebar-link :href="route('admin.article.index')" label="Artikel" icon="newspaper" />
+                <x-sidebar-link :href="route('admin.tag.index')" label="Tag Artikel" icon="bookmark-check" />
                 <x-sidebar-link :href="route('admin.dashboard')" label="Profil Gereja" icon="church" />
                 <x-sidebar-link :href="route('admin.dashboard')" label="Event" icon="calendar-heart" />
                 <x-sidebar-link :href="route('admin.dashboard')" label="Panitia" icon="users-round" />
