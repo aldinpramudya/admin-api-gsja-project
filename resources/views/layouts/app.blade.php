@@ -20,16 +20,27 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
-        <div class="flex">
-            @include('layouts.sidebar')
-            <!-- Page Content -->
-            <main class="flex-1 p-8 bg-gray-50 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Sidebar di kiri - Full height -->
+        @include('layouts.sidebar')
+
+        <!-- Container untuk Navbar dan Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Navbar di atas (terpotong sidebar) -->
+            @include('layouts.navigation')
+
+            <!-- Main Content -->
+            <main class="flex-1">
                 {{ $slot }}
             </main>
         </div>
     </div>
-</body>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+
+</body>
 </html>
