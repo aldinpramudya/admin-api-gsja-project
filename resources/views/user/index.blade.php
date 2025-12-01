@@ -10,7 +10,6 @@
                 </a>
             </div>
             {{-- Table Menampilkan --}}
-            {{-- CARD WRAPPER --}}
             <div class="bg-white shadow-lg rounded-xl p-6 border border-gray-200 mt-5">
                 <div class="flex justify-between items-center mb-5">
                     <p class="text-xl font-semibold text-gray-700">Daftar User</p>
