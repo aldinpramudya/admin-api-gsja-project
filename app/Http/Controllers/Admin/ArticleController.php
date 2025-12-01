@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -40,7 +41,14 @@ class ArticleController extends Controller
             'article_content' => 'required|string',
             'is_visible' => 'required|boolean',
             'tags' => 'array',
+            'article_image' => 'nullable|image|max:2048'
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('article_image')) {
+            $imagePath = $request->file('article_image')->store('articles', 'public');
+        }
+
 
         $article = Article::create([
             'article_title' => $request->article_title,
@@ -48,7 +56,7 @@ class ArticleController extends Controller
             'article_excerpt' => $request->article_excerpt,
             'article_content' => $request->article_content,
             'is_visible' => $request->is_visible,
-            'article_image' => $request->article_image ?? null
+            'article_image' => $imagePath
         ]);
 
         $article->tags()->sync($request->tags);
@@ -65,7 +73,15 @@ class ArticleController extends Controller
             'article_content' => 'required|string',
             'is_visible' => 'required|boolean',
             'tags' => 'array',
+            'article_image' => 'nullable|image|max:2048'
         ]);
+
+        // Update image
+        $imagePath = $article->article_image;
+        if ($request->hasFile('article_image')) {
+            if ($imagePath) Storage::disk('public')->delete($imagePath);
+            $imagePath = $request->file('article_image')->store('articles', 'public');
+        }
 
         $article->update([
             'article_title' => $request->article_title,
@@ -83,6 +99,10 @@ class ArticleController extends Controller
 
     // Delete Artikel
     public function destroy(Article $article){
+        if ($article->article_image) {
+            Storage::disk('public')->delete($article->article_image);
+        }
+
         $article->tags()->detach();
         $article->delete();
 

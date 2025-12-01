@@ -17,25 +17,37 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Wsywig --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
-    <div class="flex min-h-screen">
-        <!-- Sidebar di kiri - Full height -->
-        @include('layouts.sidebar')
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Fixed -->
+        <div class="fixed left-0 top-0 h-full">
+            @include('layouts.sidebar')
+        </div>
 
-        <!-- Container untuk Navbar dan Content -->
-        <div class="flex-1 flex flex-col">
-            <!-- Navbar di atas (terpotong sidebar) -->
-            @include('layouts.navigation')
+        <!-- Container Konten (Navbar + Main) -->
+        <div class="flex-1 flex flex-col ml-[250px]">
+            <!-- Sesuaikan width sidebar: 250px -->
 
-            <!-- Main Content -->
-            <main class="flex-1">
+            <!-- Navbar Fixed -->
+            <div class="fixed top-0 left-[350px] right-0 z-50">
+                @include('layouts.navigation')
+            </div>
+
+            <!-- Main Content Scrollable -->
+            <main class="mt-[70px] h-[calc(100vh-70px)] overflow-y-auto p-4">
                 {{ $slot }}
             </main>
         </div>
     </div>
 
+
+    {{-- Lucide Create --}}
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
@@ -43,4 +55,5 @@
 
 
 </body>
+
 </html>
