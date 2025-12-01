@@ -50,17 +50,17 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Article Routes
     Route::get('/manajemen-artikel', [ArticleController::class, 'index'])->name('article.index');
-    Route::get('/artikel-baru', [ArticleController::class, 'create'])->name('article.create');
-    Route::post('/', [ArticleController::class, 'store'])->name('article.store');
-    Route::get('/artikel/{article}', [ArticleController::class, 'edit'])->name('article.edit');
-    Route::put('/{article}', [ArticleController::class, 'update'])->name('article.update');
-    Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
+    Route::get('/manajemen-artikel/artikel-baru', [ArticleController::class, 'create'])->name('article.create');
+    Route::post('/manajemen-artikel', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/manajemen-artikel/{article}', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::put('/manajemen-artikel/{article}', [ArticleController::class, 'update'])->name('article.update');
+    Route::delete('/manajemen-artikel/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
     // Article Routes End
 
     // Tag Routes
     Route::get('/manajemen-tag-artikel', [TagController::class, 'index'])->name('tag.index');
     Route::get('/manajemen-tag-artikel/tag-baru', [TagController::class, 'create'])->name('tag.create');
-    Route::post('/', [TagController::class, 'store'])->name('tag.store');
+    Route::post('/manajemen-tag-artikel', [TagController::class, 'store'])->name('tag.store');
     Route::get('/manajemen-tag-artikel/{tag}', [TagController::class, 'edit'])->name('tag.edit');
     Route::put('/manajemen-tag-artikel/{tag}', [TagController::class, 'update'])->name('tag.update');
     Route::delete('/manajemen-tag-artikel/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
