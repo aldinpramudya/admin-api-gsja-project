@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,15 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
 });
 
 // User Management - Only For Superadmin
-Route::middleware(['auth', 'role:superadmin'])->prefix('admin')->name('admin.')->group(function () {});
+
+Route::middleware(['auth', 'role:superadmin'])->prefix('admin/manajemen-user')->name('admin.user.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/user-baru', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::get('/{user}', [UserController::class, 'edit'])->name('show');
+    Route::put('/{user}', [UserController::class, 'update'])->name('update');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
+});
 
 // Route Bendahara Only
 Route::middleware(['auth', 'role:bendahara'])->prefix('bendahara')->name('bendahara.')->group(function () {
@@ -59,9 +68,6 @@ Route::middleware(['auth', 'role:bendahara'])->prefix('bendahara')->name('bendah
 Route::middleware(['auth', 'role:pendeta'])->prefix('pendeta')->name('pendeta.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
