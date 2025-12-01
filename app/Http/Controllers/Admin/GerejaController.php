@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class GerejaController extends Controller
 {
-    //
+    // Index
+    public function index(){
+
+    }
 }

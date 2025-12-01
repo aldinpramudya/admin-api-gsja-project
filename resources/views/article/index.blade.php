@@ -26,7 +26,7 @@
                             <tr>
                                 <td class="p-3 border">{{ $a->article_title }}</td>
 
-                                <td class="p-3 border">
+                                <td class="p-3 border flex justify-center gap-3">
                                     @foreach ($a->tags as $tag)
                                         <span class="text-xs bg-gray-200 px-2 py-1 rounded">
                                             {{ $tag->tags_name }}
@@ -38,7 +38,7 @@
                                     {{ $a->is_visible ? 'Visible' : 'Hidden' }}
                                 </td>
 
-                                <td class="p-3 border text-center">
+                                <td class="p-3 flex justify-center gap-3">
                                     <a href="{{ route('admin.article.edit', $a->id) }}"
                                         class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600">
                                         Edit

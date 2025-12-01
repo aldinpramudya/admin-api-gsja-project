@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PendetaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
@@ -65,6 +66,15 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
     Route::put('/manajemen-tag-artikel/{tag}', [TagController::class, 'update'])->name('tag.update');
     Route::delete('/manajemen-tag-artikel/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
     // Tag Routes End
+
+    // Route Pendeta
+    Route::get('/manajemen-data-pendeta', [PendetaController::class, 'index'])->name('pendeta.index');
+    Route::get('/manajemen-data-pendeta/data-baru', [PendetaController::class, 'create'])->name('pendeta.create');
+    Route::post('/manajemen-data-pendeta', [PendetaController::class, 'store'])->name('pendeta.store');
+    Route::get('/manajemen-data-pendeta/{pendeta}', [PendetaController::class, 'edit'])->name('pendeta.edit');
+    Route::put('/manajemen-data-pendeta/{pendeta}', [PendetaController::class, 'update'])->name('pendeta.update');
+    Route::delete('/manajemen-data-pendeta/{pendeta}', [PendetaController::class, 'destroy'])->name('pendeta.destroy');
+    // Route Pendeta End
 });
 
 // User Management - Only For Superadmin
