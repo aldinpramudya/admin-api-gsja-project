@@ -2,6 +2,8 @@
 
 <x-app-layout>
     <div class="py-12 max-w-7xl mx-auto">
+         <x-page-title title="Manajemen Panitia" subtitle="Halaman Manajemen Panitia Organisasi Wilayah"
+                icon="users-round" />
         {{-- Card Tambah Baru --}}
         <div class="flex space-x-3">
             <a href="{{ route('admin.susunanPanitia.create') }}">

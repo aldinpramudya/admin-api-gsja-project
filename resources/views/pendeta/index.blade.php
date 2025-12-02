@@ -2,6 +2,8 @@
 
 <x-app-layout>
     <div class="py-12 max-w-7xl mx-auto">
+        <x-page-title title="Manajemen Data Pendeta" subtitle="Halaman Manajemen Data Pendeta Wilayah"
+                icon="file-user" />
         {{-- Card Tambah Baru --}}
         <div class="flex">
             <a href="{{ route('admin.pendeta.create') }}">

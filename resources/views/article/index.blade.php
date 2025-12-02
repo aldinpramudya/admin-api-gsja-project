@@ -3,6 +3,8 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
+            <x-page-title title="Artikel" subtitle="Halaman Manajemen Artikel"
+                icon="newspaper" />
             {{-- Card Tambah Baru --}}
             <div class="flex">
                 <a href="{{ route('admin.article.create') }}">
