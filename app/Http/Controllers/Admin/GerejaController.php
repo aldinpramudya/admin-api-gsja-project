@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Gereja;
 use App\Models\Pendeta;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class GerejaController extends Controller
@@ -90,6 +91,9 @@ class GerejaController extends Controller
 
     public function destroy(Gereja $gereja)
     {
+        if ($gereja->image_gereja) {
+            Storage::disk('public')->delete($gereja->image_gereja);
+        }
         $gereja->delete();
         return redirect()->route('admin.gereja.index')->with('success', 'Data Gereja berhasil dihapuskan');
     }

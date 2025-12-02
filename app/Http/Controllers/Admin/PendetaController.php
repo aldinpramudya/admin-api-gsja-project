@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pendeta;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PendetaController extends Controller
@@ -78,6 +79,11 @@ class PendetaController extends Controller
     public function destroy($id)
     {
         $pendeta = Pendeta::findOrFail($id);
+
+        if ($pendeta->iamge_pendeta) {
+            Storage::disk('public')->delete($pendeta->image_pendeta);
+        }
+
         $pendeta->delete();
         return redirect()->route('admin.pendeta.index')->with('success', 'Data Pendeta Sudah dihapuskan');
     }

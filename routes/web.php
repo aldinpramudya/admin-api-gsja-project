@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GerejaController;
 use App\Http\Controllers\Admin\PendetaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -86,7 +88,14 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
     Route::delete('/manajemen-data-gereja/{gereja}', [GerejaController::class, 'destroy'])->name('gereja.destroy');
     // Route Gereja End
 
-    
+    // Route Event
+    Route::get('/manajemen-event', [EventController::class, 'index'])->name('event.index');
+    Route::get('/manajemen-event/data-baru', [EventController::class, 'create'])->name('event.create');
+    Route::post('/manajemen-event', [EventController::class, 'store'])->name('event.store');
+    Route::get('/manajemen-event/{event}', [EventController::class, 'edit'])->name('event.edit');
+    Route::put('/manajemen-event/{event}', [EventController::class, 'update'])->name('event.update');
+    Route::delete('/manajemen-event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
+    // Route Event
 });
 
 // User Management - Only For Superadmin
