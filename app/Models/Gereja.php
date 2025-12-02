@@ -15,4 +15,8 @@ class Gereja extends Model
         "numberphone_gereja",
         "email_gereja",
     ];
+
+    public function pendeta(){
+        return $this->belongsTo(Pendeta::class, 'pendeta_id');
+    }
 }
