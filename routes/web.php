@@ -5,10 +5,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GerejaController;
 use App\Http\Controllers\Admin\PendetaController;
+use App\Http\Controllers\Admin\PosisiPanitiaController;
+use App\Http\Controllers\Admin\SusunanPanitiaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Event;
+use App\Models\PosisiPanitia;
+use App\Models\SusunanPanitia;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -96,6 +100,26 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
     Route::put('/manajemen-event/{event}', [EventController::class, 'update'])->name('event.update');
     Route::delete('/manajemen-event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
     // Route Event
+
+    // Route Posisi / Role Panitia
+    Route::get('/manajemen-posisi-panitia', [PosisiPanitiaController::class, 'index'])->name('posisiPanitia.index');
+    Route::get('/manajemen-posisi-panitia/data-baru', [PosisiPanitiaController::class, 'create'])->name('posisiPanitia.create');
+    Route::post('/manajemen-posisi-panitia', [PosisiPanitiaController::class, 'store'])->name('posisiPanitia.store');
+    Route::get('/manajemen-posisi-panitia/{posisiPanitia}', [PosisiPanitiaController::class, 'edit'])->name('posisiPanitia.edit');
+    Route::put('/manajemen-posisi-panitia/{posisiPanitia}', [PosisiPanitiaController::class, 'update'])->name('posisiPanitia.update');
+    Route::delete('/manajemen-posisi-panitia/{posisiPanitia}', [PosisiPanitiaController::class, 'destroy'])->name('posisiPanitia.destroy');
+    // Route Posisi / Role Panitia End
+
+    // Route Susunan Anggota Panitia
+    Route::get('/manajemen-susunan-panitia', [SusunanPanitiaController::class, 'index'])->name('susunanPanitia.index');
+    Route::get('/manajemen-susunan-panitia/data-baru', [SusunanPanitiaController::class, 'create'])->name('susunanPanitia.create');
+    Route::post('/manajemen-susunan-panitia', [SusunanPanitiaController::class, 'store'])->name('susunanPanitia.store');
+    Route::get('/manajemen-susunan-panitia/{susunanPanitia}', [SusunanPanitiaController::class, 'edit'])->name('susunanPanitia.edit');
+    Route::put('/manajemen-susunan-panitia/{susunanPanitia}', [SusunanPanitiaController::class, 'update'])->name('susunanPanitia.update');
+    Route::delete('/manajemen-susunan-panitia/{susunanPanitia}', [SusunanPanitiaController::class, 'destroy'])->name('susunanPanitia.destroy');
+    // Route Susunan Anggota Panitia End
+
+
 });
 
 // User Management - Only For Superadmin
