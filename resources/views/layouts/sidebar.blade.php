@@ -13,7 +13,7 @@
                 <x-sidebar-link :href="route('admin.article.index')" label="Artikel" icon="newspaper" />
                 <x-sidebar-link :href="route('admin.tag.index')" label="Tag Artikel" icon="bookmark-check" />
                 <x-sidebar-link :href="route('admin.gereja.index')" label="Profil Gereja" icon="church" />
-                <x-sidebar-link :href="route('admin.dashboard')" label="Event" icon="calendar-heart" />
+                <x-sidebar-link :href="route('admin.event.index')" label="Event" icon="calendar-heart" />
                 <x-sidebar-link :href="route('admin.dashboard')" label="Panitia" icon="users-round" />
             </div>
             <div class="space-y-2">
