@@ -68,6 +68,7 @@ class ArticleController extends Controller
         return redirect()->route('admin.article.index')->with('success', "Artikel berhasil dibuat");
     }
 
+    // Update Artikel
     public function update(Request $request, Article $article)
     {
         $request->validate([

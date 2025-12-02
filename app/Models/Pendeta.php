@@ -12,4 +12,9 @@ class Pendeta extends Model
         "image_pendeta",
         "salary",
     ];
+
+    public function gereja(){
+        return $this->hasOne(Gereja::class, 'pendeta_id');
+    }
+
 }

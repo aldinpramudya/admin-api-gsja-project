@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GerejaController;
 use App\Http\Controllers\Admin\PendetaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
@@ -75,6 +76,17 @@ Route::middleware(['auth', 'role:superadmin,admin'])->prefix('admin')->name('adm
     Route::put('/manajemen-data-pendeta/{pendeta}', [PendetaController::class, 'update'])->name('pendeta.update');
     Route::delete('/manajemen-data-pendeta/{pendeta}', [PendetaController::class, 'destroy'])->name('pendeta.destroy');
     // Route Pendeta End
+
+    // Route Gereja
+    Route::get('/manajemen-data-gereja', [GerejaController::class, 'index'])->name('gereja.index');
+    Route::get('/manajemen-data-gereja/data-baru', [GerejaController::class, 'create'])->name('gereja.create');
+    Route::post('/manajemen-data-gereja', [GerejaController::class, 'store'])->name('gereja.store');
+    Route::get('/manajemen-data-gereja/{gereja}', [GerejaController::class, 'edit'])->name('gereja.edit');
+    Route::put('/manajemen-data-gereja/{gereja}', [GerejaController::class, 'update'])->name('gereja.update');
+    Route::delete('/manajemen-data-gereja/{gereja}', [GerejaController::class, 'destroy'])->name('gereja.destroy');
+    // Route Gereja End
+
+    
 });
 
 // User Management - Only For Superadmin
