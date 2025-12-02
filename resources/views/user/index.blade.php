@@ -3,6 +3,8 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
+             <x-page-title title="Manajemen Data Akun" subtitle="Halaman Manajemen Data Akun Website Admin"
+                icon="user-round-pen" />
             {{-- Card Tambah Baru --}}
             <div class="flex">
                 <a href="{{ route('admin.user.create') }}">
