@@ -7,6 +7,7 @@ use App\Models\Gereja;
 use App\Models\Pendeta;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GerejaController extends Controller
 {
@@ -49,6 +50,7 @@ class GerejaController extends Controller
         Gereja::create([
             'pendeta_id' => $request->pendeta_id,
             'name_gereja' => $request->name_gereja,
+            'slugs_gereja' => Str::slug($request->name_gereja),
             'image_gereja' => $imagePath,
             'address_gereja' => $request->address_gereja,
             'numberphone_gereja' => $request->numberphone_gereja,
@@ -80,6 +82,7 @@ class GerejaController extends Controller
         $gereja->update([
             'pendeta_id' => $request->pendeta_id,
             'name_gereja' => $request->name_gereja,
+            'slugs_gereja' => Str::slug($request->name_gereja),
             'image_gereja' => $imagePath,
             'address_gereja' => $request->address_gereja,
             'numberphone_gereja' => $request->numberphone_gereja,

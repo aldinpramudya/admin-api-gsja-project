@@ -29,7 +29,7 @@
                             <td class="p-3 border">{{ $gereja->name_gereja }}</td>
                             <td class="p-3 border">{{ $gereja->address_gereja }}</td>
                             <td class="p-3 border">{{ $gereja->numberphone_gereja }}</td>
-                            <td>
+                            <td class="p-3 flex justify-center gap-3">
                                 <a href="{{ route('admin.gereja.edit', $gereja->id) }}"
                                     class="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600">
                                     Edit
