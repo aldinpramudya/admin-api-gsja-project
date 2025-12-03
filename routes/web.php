@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PosisiPanitiaController;
 use App\Http\Controllers\Admin\SusunanPanitiaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Bendahara\PendetaBendaharaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Event;
 use App\Models\PosisiPanitia;
@@ -136,6 +137,10 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('admin/manajemen-user')->
 // Route Bendahara Only
 Route::middleware(['auth', 'role:bendahara'])->prefix('bendahara')->name('bendahara.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+     // Route Pendeta
+    Route::get('/manajemen-data-pendeta', [PendetaBendaharaController::class, 'index'])->name('pendeta.index');
+    Route::get('/manajemen-data-pendeta/{pendeta}', [PendetaBendaharaController::class, 'edit'])->name('pendeta.edit');
+    Route::put('/manajemen-data-pendeta/{pendeta}', [PendetaBendaharaController::class, 'update'])->name('pendeta.update');
 });
 
 // Route Pendeta Only
