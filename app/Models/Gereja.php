@@ -10,6 +10,7 @@ class Gereja extends Model
     protected $fillable = [
         "pendeta_id",
         "name_gereja",
+        'slugs_gereja',
         "image_gereja",
         "address_gereja",
         "numberphone_gereja",
