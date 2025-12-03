@@ -55,6 +55,20 @@
     </script>
     {{-- Lucide Init End --}}
 
+    <script>
+        function formatRupiah(input) {
+            // Ambil angka saja
+            let value = input.value.replace(/[^0-9]/g, "");
+
+            if (!value) {
+                input.value = "";
+                return;
+            }
+
+            // Format angka jadi ribuan
+            input.value = new Intl.NumberFormat("id-ID").format(value);
+        }
+    </script>
 
 </body>
 
