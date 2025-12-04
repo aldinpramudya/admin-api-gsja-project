@@ -46,13 +46,9 @@
                     @endforeach
                 </tbody>
             </table>
-
             <div class="px-4 py-3">
                 {{ $events->links('pagination::tailwind') }}
             </div>
         </div>
-
-
-
     </div>
 </x-app-layout>

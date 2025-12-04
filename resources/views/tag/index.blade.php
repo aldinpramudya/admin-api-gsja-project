@@ -3,8 +3,7 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
-             <x-page-title title="Tag Artikel" subtitle="Halaman Manajemen Tag Artikel"
-                icon="bookmark-check" />
+            <x-page-title title="Tag Artikel" subtitle="Halaman Manajemen Tag Artikel" icon="bookmark-check" />
             {{-- Card Tambah Baru --}}
             <div class="flex">
                 <a href="{{ route('admin.tag.create') }}">
@@ -49,6 +48,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="px-4 py-3">
+                    {{ $tags->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>

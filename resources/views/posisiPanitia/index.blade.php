@@ -2,8 +2,8 @@
 
 <x-app-layout>
     <div class="py-12 max-w-7xl mx-auto">
-        <x-page-title title="Manajemen Role Atau Posisi Panitia" subtitle="Halaman Manajemen Posisi Panitia Organisasi Wilayah"
-                icon="users-round" />
+        <x-page-title title="Manajemen Role Atau Posisi Panitia"
+            subtitle="Halaman Manajemen Posisi Panitia Organisasi Wilayah" icon="users-round" />
         {{-- Breadcrumb --}}
         <nav class="text-sm mb-4">
             <a href="{{ route('admin.susunanPanitia.index') }}" class="text-gray-600">Menu Susunan Panitia</a>
@@ -51,7 +51,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="px-4 py-3">
+                {{ $posisiPanitias->links('pagination::tailwind') }}
+            </div>
         </div>
-
-
 </x-app-layout>

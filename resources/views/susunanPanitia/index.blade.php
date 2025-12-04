@@ -2,8 +2,8 @@
 
 <x-app-layout>
     <div class="py-12 max-w-7xl mx-auto">
-         <x-page-title title="Manajemen Panitia" subtitle="Halaman Manajemen Panitia Organisasi Wilayah"
-                icon="users-round" />
+        <x-page-title title="Manajemen Panitia" subtitle="Halaman Manajemen Panitia Organisasi Wilayah"
+            icon="users-round" />
         {{-- Card Tambah Baru --}}
         <div class="flex space-x-3">
             <a href="{{ route('admin.susunanPanitia.create') }}">
@@ -37,8 +37,8 @@
                                     Edit
                                 </a>
 
-                                <form action="{{ route('admin.susunanPanitia.destroy', $data->id) }}"
-                                    method="POST" class="inline-block" onsubmit="return confirm('Hapus tag ini?')">
+                                <form action="{{ route('admin.susunanPanitia.destroy', $data->id) }}" method="POST"
+                                    class="inline-block" onsubmit="return confirm('Hapus Panitia ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700">
@@ -50,7 +50,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="px-4 py-3">
+                {{ $panitia->links('pagination::tailwind') }}
+            </div>
         </div>
-
     </div>
 </x-app-layout>
