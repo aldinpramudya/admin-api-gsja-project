@@ -3,8 +3,7 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
-            <x-page-title title="Artikel" subtitle="Halaman Manajemen Artikel"
-                icon="newspaper" />
+            <x-page-title title="Artikel" subtitle="Halaman Manajemen Artikel" icon="newspaper" />
             {{-- Card Tambah Baru --}}
             <div class="flex">
                 <a href="{{ route('admin.article.create') }}">
@@ -61,6 +60,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="px-4 py-3">
+                    {{ $articles->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>
