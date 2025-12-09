@@ -88,21 +88,11 @@
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
-                        <!-- Remember Me & Forgot Password -->
-                        <div class="flex items-center justify-between">
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" 
-                                   class="text-sm text-[#E5322D] hover:text-[#c42820] font-semibold transition duration-150">
-                                    Forgot password?
-                                </a>
-                            @endif
-                        </div>
-
                         <!-- Login Button -->
                         <div>
                             <button type="submit" 
                                     class="w-full bg-[#E5322D] hover:bg-[#c42820] text-white font-semibold py-3 px-4 rounded-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E5322D] shadow-lg">
-                                Sign In
+                                Login
                             </button>
                         </div>
                     </form>
