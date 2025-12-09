@@ -27,16 +27,16 @@
 <body class="font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar Fixed -->
-        <div class="fixed left-0 top-0 h-full">
+        <div class="fixed left-0 top-0 h-full z-50">
             @include('layouts.sidebar')
         </div>
 
         <!-- Container Konten (Navbar + Main) -->
-        <div class="flex-1 flex flex-col ml-[250px]">
+        <div class="flex-1 flex flex-col tablet:ml-[320px]">
             <!-- Sesuaikan width sidebar: 250px -->
 
             <!-- Navbar Fixed -->
-            <div class="fixed top-0 left-[350px] right-0 z-50">
+            <div class="fixed top-0 left-0 tablet:left-[320px] right-0 z-30">
                 @include('layouts.navigation')
             </div>
 
@@ -46,6 +46,25 @@
             </main>
         </div>
     </div>
+    {{-- Mobile Overlay --}}
+    <div class="hidden fixed inset-0 bg-black bg-opacity-50 z-30" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    {{-- Mobile Overlay End --}}
+
+
+    {{-- Script Toggle Sidebar --}}
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            // Toggle translate untuk animasi slide
+            sidebar.classList.toggle('-translate-x-full');
+
+            // Toggle overlay
+            overlay.classList.toggle('hidden');
+        }
+    </script>
+    {{-- Script Toggle Sidebar End --}}
 
 
     {{-- Lucide Init --}}
@@ -69,6 +88,10 @@
             input.value = new Intl.NumberFormat("id-ID").format(value);
         }
     </script>
+
+    {{-- Stack Script --}}
+    @stack('script-app')
+    {{-- Stack Script --}}
 
 </body>
 
